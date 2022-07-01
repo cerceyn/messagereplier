@@ -65,6 +65,9 @@ async def islemler():
     try:await userbot(JoinChannelRequest(grup))
     except:pass
     basarili("Bot çalışıyor...")
+    @clabtetikleyici(bot=userbot,incoming=True, pattern="^.start$",disable_edited=True)
+    async def muutf(m):
+        await m.reply("Running...⚡")
     await userbot.run_until_disconnected()
 
 async def main():
@@ -92,9 +95,7 @@ async def main():
             else:
                 continue
 
-@clabtetikleyici(bot=userbot,incoming=True, pattern="^.start$",disable_edited=True)
-async def muutf(m):
-    await m.reply("Running...⚡")
+
 
 
 async def conn(userbot):
