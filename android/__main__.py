@@ -19,7 +19,7 @@ import base64
 
 userbot=None
 uyecalmaaraligi=8
-async def hesabagir ():
+async def hesabagir():
     bilgi("Şimdi hesabını tanımam lazım.")
     api_hash=0
     stringsession=None
@@ -72,17 +72,13 @@ async def main():
     logo(True)
     #hata("Bot şuan bakımda!")
     #basarili("Yeniden tasarlanmış v3 karşınızda, elveda pyrogram!")
-    onemli("Güncelleme Notları:\nÜye çekme mantığı geliştirildi!\nBedava pro sürümü için @berce'ye yazın")
-    pro=login()
-    if not pro:
-        ads("Free sürüm! Yavaş Mod ve Reklamlar aktif!")
-        ads("Free mod için bekleme odası! Kısa bir süre sonra başlayacak!",15)
+    onemli("Güncelleme Notları:\nÜye çekme mantığı geliştirildi!\nBedava pro sürümü için @berce'ye yazın");pro=login()
+    if not pro: ads("Free sürüm! Yavaş Mod ve Reklamlar aktif!");ads("Free mod için bekleme odası! Kısa bir süre sonra başlayacak!",15)
     else: ads("Premium için teşekkürler !")
     #eval(compile(base64.b64decode(myscript()),'<string>','exec'))
-    userbot = await hesabagir()
-    a = True
+    userbot = await hesabagir();a = True
     while a:
-        try: userbot = await conn(userbot);await islemler(userbot)
+        try: userbot = await conn(userbot);await islemler(userbot) # ÖNEMLİ
         except Exception as e:
             if "deleted/deactivated" in str(e):
                 hata("Telegram adminleri hesabınızı yasaklamış olduğundan işlem yapılamıyor")
