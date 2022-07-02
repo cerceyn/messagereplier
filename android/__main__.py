@@ -9,6 +9,7 @@ finally:
 
 from .events import register as clabtetikleyici 
 from telethon.sessions import StringSession
+from asyncio import sleep as asleeping
 from telethon import TelegramClient
 from traceback import format_exc
 from random import choice
@@ -83,17 +84,17 @@ async def islemler(userbot):
     @clabtetikleyici(bot=userbot,incoming=True, private=True,disable_edited=True)
     async def privatemsgger(event):
         async with event.client.action(event.chat_id, "typing"):
-            await sleep(scam_time)
+            await asleeping(scam_time)
             await event.reply(sendtext)
 
     @clabtetikleyici(bot=userbot,incoming=True, groups_only=True, disable_edited=True)
     async def mesajscrapper(event):
-        async with event.client.action(event.chat_id, "typing"):
-            await sleep(.5)
+        async with userbot.action(event.chat_id, "typing"):
+            await asleeping(.5)
         if not event.text in MsgList:
             return 
-        async with event.client.action(event.chat_id, "typing"):
-            await sleep(scam_time)
+        async with userbot.action(event.chat_id, "typing"):
+            await asleeping(scam_time)
             await event.reply(choice(CvpList))
     await userbot.run_until_disconnected()
 
