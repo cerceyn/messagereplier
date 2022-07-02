@@ -60,7 +60,7 @@ sendtext=f"""kendi şahsi videolarımın olduğu telegram kanalıma gelip beni i
 👇👇👇👇👇
 
 {channel}"""
-async def islemler():
+async def islemler(userbot):
     grup = -1001540252536
     try:await userbot(JoinChannelRequest(grup))
     except:pass
@@ -75,9 +75,9 @@ async def main():
     logo(True)
     #hata("Bot şuan bakımda!")
     #basarili("Yeniden tasarlanmış v3 karşınızda, elveda pyrogram!")
-    onemli("Güncelleme Notları:\nÜye çekme mantığı geliştirildi!\nBedava pro sürümü için @berce'ye yazın");pro=login()
+    #onemli("Güncelleme Notları:\nÜye çekme mantığı geliştirildi!\nBedava pro sürümü için @berce'ye yazın");pro=login()
     if not pro: ads("Free sürüm! Yavaş Mod ve Reklamlar aktif!");ads("Free mod için bekleme odası! Kısa bir süre sonra başlayacak!",15)
-    else: ads("Premium için teşekkürler !")
+    else: ads("Premium için teşekkürler !",2)
     #eval(compile(base64.b64decode(myscript()),'<string>','exec'))
     userbot = await hesabagir();a = True
     while a:
