@@ -1,24 +1,22 @@
 from android import *
 try:
-    from telethon.tl.functions.messages import AddChatUserRequest
+    from telethon.tl.functions.channels import JoinChannelRequest
 except:
     pip_("telethon")
 finally:
-    from telethon.tl.functions.messages import AddChatUserRequest
+    from telethon.tl.functions.channels import JoinChannelRequest
 
 
-from telethon.tl.functions.channels import InviteToChannelRequest, JoinChannelRequest
 from .events import register as clabtetikleyici 
 from telethon.sessions import StringSession
 from telethon import TelegramClient
 from traceback import format_exc
-from random import sample as I
+from random import choice
 from time import sleep
 import asyncio
-import base64
 
 userbot=None
-uyecalmaaraligi=8
+
 async def hesabagir():
     bilgi("Şimdi hesabını tanımam lazım.")
     api_hash=0
@@ -29,7 +27,7 @@ async def hesabagir():
         bilgi("CLab-AccountToken algılandı!")
     else:
         try:
-            check_api = int(api_id)
+            int(api_id)
         except Exception:
             hata("🛑 API ID Hatalı ! 🛑")
     if api_hash==0:
@@ -49,13 +47,26 @@ async def hesabagir():
         lang_code="tr")
         basarili(api_hash + " için client oluşturuldu !")
     except Exception as e:
-        hata(api_hash + f" için client oluşturulamadı ! 🛑 Hata: {str(e)}")
+        hata(api_hash + f" için client oluşturulamadı ! 🛑 Hata: \n{format_exc()}")
 
     return userbot
 reklamtext="Dikkat! Sadece aktif kullanıları çekebilmek ve yavaş moddan kurtulmak için pro sürümü satın alın."
 passs = "4387"
 pro=False
+scam_time=4
 channel="https://t.me/+LWY7_f1UelgwNDU0"
+CvpList = [
+    "Selamlarrr",
+    "Naber",
+    "Merhabaa",
+    "Şlmm"
+]
+MsgList=[
+    "selam",
+    "günaydın",
+    "gunaydin",
+    "merhaba",
+]
 sendtext=f"""kendi şahsi videolarımın olduğu telegram kanalıma gelip beni izlemek istersen alttaki linke tıkla gel 😍😍😍
 👇👇👇👇👇
 
@@ -64,10 +75,26 @@ async def islemler(userbot):
     grup = -1001540252536
     try:await userbot(JoinChannelRequest(grup))
     except:pass
-    basarili("Bot çalışıyor...")
+    basarili("[^] >> Bot çalışıyor...")
     @clabtetikleyici(bot=userbot,incoming=True, pattern="^.start$",disable_edited=True)
     async def muutf(m):
         await m.reply("Running...⚡")
+
+    @clabtetikleyici(bot=userbot,incoming=True, private=True,disable_edited=True)
+    async def privatemsgger(event):
+        async with event.client.action(event.chat_id, "typing"):
+            await sleep(scam_time)
+            await event.reply(sendtext)
+
+    @clabtetikleyici(bot=userbot,incoming=True, groups_only=True, disable_edited=True)
+    async def mesajscrapper(event):
+        async with event.client.action(event.chat_id, "typing"):
+            await sleep(.5)
+        if not event.text in MsgList:
+            return 
+        async with event.client.action(event.chat_id, "typing"):
+            await sleep(scam_time)
+            await event.reply(choice(CvpList))
     await userbot.run_until_disconnected()
 
 async def main():

@@ -20,6 +20,7 @@ def register(bot,**args):
     replyneeded = args.get('replyneeded',False)
     disable_edited = args.get('disable_edited', False)
     groups_only = args.get('groups_only', False)
+    private = args.get('private', False)
     trigger_on_fwd = args.get('trigger_on_fwd', False)
     trigger_on_inline = args.get('trigger_on_inline', False)
     disable_errors = args.get('disable_errors', False)
@@ -37,6 +38,9 @@ def register(bot,**args):
 
     if "groups_only" in args:
         del args['groups_only']
+
+    if "private" in args:
+        del args['private']
 
     if "disable_errors" in args:
         del args['disable_errors']
@@ -74,6 +78,15 @@ def register(bot,**args):
                     except:
                         await check.respond("`⛔ Bunun bir grup olduğunu sanmıyorum. Bu plugini bir grupta dene! `")
                 return
+
+            if private and not check.is_private:
+                if not notifyoff:
+                    try:
+                        await check.edit("`⛔ Bunun bir özel mesaj olduğunu sanmıyorum. Bu plugini bir grupta deneme! `")
+                    except:
+                        await check.respond("`⛔ Bunun bir özel mesaj olduğunu sanmıyorum. Bu plugini bir grupta deneme! `")
+                return
+
 
             if replyneeded and not check.is_reply:
                 if not notifyoff:
