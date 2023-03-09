@@ -141,7 +141,7 @@ def register(bot,**args):
                     ftext += str(format_exc())
                     ftext += "\n\n--------HATA GUNLUGU BITIS--------"
 
-                    file = open("error.log", "w+")
+                    file = open("error.log", "w+",encoding="utf-8")
                     file.write(ftext)
                     file.close()
 
